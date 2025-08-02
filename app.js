@@ -12,6 +12,164 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add scroll animations
     initScrollAnimations();
+    
+    // Start countdown timer
+    startCountdown();
+    
+    // Add WhatsApp floating button
+    addWhatsAppButton();
+    
+// WhatsApp floating button function
+function addWhatsAppButton() {
+    const whatsappButton = document.createElement('a');
+    whatsappButton.href = 'https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20de%20Mega%20Hair'; // Replace with your actual WhatsApp number
+    whatsappButton.target = '_blank';
+    whatsappButton.className = 'whatsapp-button';
+    whatsappButton.innerHTML = '<i class="fab fa-whatsapp"></i>';
+    whatsappButton.setAttribute('aria-label', 'Fale conosco pelo WhatsApp');
+    whatsappButton.rel = 'noopener noreferrer';
+    
+    // Style the button
+    Object.assign(whatsappButton.style, {
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        width: '60px',
+        height: '60px',
+        borderRadius: '50%',
+        backgroundColor: '#25D366',
+        color: '#fff',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
+        zIndex: '9999',
+        transition: 'all 0.3s ease'
+    });
+    
+    // Add hover effect
+    whatsappButton.addEventListener('mouseover', () => {
+        whatsappButton.style.transform = 'scale(1.1)';
+    });
+    
+    whatsappButton.addEventListener('mouseout', () => {
+        whatsappButton.style.transform = 'scale(1)';
+    });
+    
+    document.body.appendChild(whatsappButton);
+}
+
+// Countdown timer function
+function startCountdown() {
+    const countdownElement = document.getElementById('countdown');
+    if (!countdownElement) return;
+    
+    // Set initial time: 24 hours
+    let hours = 23;
+    let minutes = 59;
+    let seconds = 59;
+    
+    // Función para obtener una cookie por su nombre
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return null;
+    }
+    
+    // Primero intentar recuperar de localStorage
+    const storedCountdown = localStorage.getItem('megahairCountdown');
+    // Luego intentar recuperar de cookies como respaldo
+    const cookieCountdown = getCookie('megahairCountdownCookie');
+    
+    let endTime = null;
+    
+    if (storedCountdown) {
+        const countdownData = JSON.parse(storedCountdown);
+        endTime = countdownData.endTime;
+    } else if (cookieCountdown) {
+        endTime = parseInt(cookieCountdown);
+    }
+    
+    const now = new Date().getTime();
+    
+    if (endTime && endTime > now) {
+        // Si tenemos un tiempo final válido y está en el futuro
+        const timeLeft = endTime - now;
+        hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    } else {
+        // Si no hay tiempo guardado o ya expiró, establecer uno nuevo
+        setNewCountdown();
+    }
+    
+    function setNewCountdown() {
+        // Set end time to 24 hours from now
+        const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
+        localStorage.setItem('megahairCountdown', JSON.stringify({ endTime }));
+        
+        // También guardar en una cookie para mayor persistencia
+        const expiryDate = new Date();
+        expiryDate.setTime(expiryDate.getTime() + (30 * 24 * 60 * 60 * 1000)); // 30 días para la cookie
+        document.cookie = `megahairCountdownCookie=${endTime};expires=${expiryDate.toUTCString()};path=/`;
+    }
+    
+    // Update the countdown every second
+    const countdownInterval = setInterval(function() {
+        // Decrementar el tiempo
+        if (seconds > 0) {
+            seconds--;
+        } else {
+            seconds = 59;
+            if (minutes > 0) {
+                minutes--;
+            } else {
+                minutes = 59;
+                if (hours > 0) {
+                    hours--;
+                } else {
+                    // Si el contador llega a cero, reiniciar a 24 horas
+                    setNewCountdown();
+                    
+                    // Obtener el nuevo tiempo final
+                    const storedData = JSON.parse(localStorage.getItem('megahairCountdown'));
+                    const now = new Date().getTime();
+                    const timeLeft = storedData.endTime - now;
+                    
+                    hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+                }
+            }
+        }
+        
+        // Update the display
+        // Mostrar en formato horas:minutos:segundos
+        countdownElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        // Decrement the time
+        if (seconds > 0) {
+            seconds--;
+        } else {
+            seconds = 59;
+            if (minutes > 0) {
+                minutes--;
+            } else {
+                minutes = 59;
+                if (hours > 0) {
+                    hours--;
+                } else {
+                    // Countdown finished, reset to 5 hours
+                    hours = 4;
+                    minutes = 59;
+                    seconds = 59;
+                    setNewCountdown();
+                }
+            }
+        }
+    }, 1000);
+}
 });
 
 // FAQ Accordion
@@ -166,9 +324,9 @@ function initUrgencyTimer() {
         const timeLeft = endTime - now;
         
         if (timeLeft > 0) {
-            const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            const hours = Math.floor(timeLeft / (5000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (5000 * 60 * 60)) / (5000 * 60));
+            const seconds = Math.floor((timeLeft % (5000 * 60)) / 5000);
             
             timerElements.forEach(el => {
                 el.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
