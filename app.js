@@ -16,49 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Start countdown timer
     startCountdown();
     
-    // Add WhatsApp floating button
-    addWhatsAppButton();
-    
-// WhatsApp floating button function
-function addWhatsAppButton() {
-    const whatsappButton = document.createElement('a');
-    whatsappButton.href = 'https://wa.me/5511999999999?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20curso%20de%20Mega%20Hair'; // Replace with your actual WhatsApp number
-    whatsappButton.target = '_blank';
-    whatsappButton.className = 'whatsapp-button';
-    whatsappButton.innerHTML = '<i class="fab fa-whatsapp"></i>';
-    whatsappButton.setAttribute('aria-label', 'Fale conosco pelo WhatsApp');
-    whatsappButton.rel = 'noopener noreferrer';
-    
-    // Style the button
-    Object.assign(whatsappButton.style, {
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        width: '60px',
-        height: '60px',
-        borderRadius: '50%',
-        backgroundColor: '#25D366',
-        color: '#fff',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-        zIndex: '9999',
-        transition: 'all 0.3s ease'
-    });
-    
-    // Add hover effect
-    whatsappButton.addEventListener('mouseover', () => {
-        whatsappButton.style.transform = 'scale(1.1)';
-    });
-    
-    whatsappButton.addEventListener('mouseout', () => {
-        whatsappButton.style.transform = 'scale(1)';
-    });
-    
-    document.body.appendChild(whatsappButton);
-}
-
 // Countdown timer function
 function startCountdown() {
     const countdownElement = document.getElementById('countdown');
