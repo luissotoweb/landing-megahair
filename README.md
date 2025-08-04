@@ -1,130 +1,52 @@
-# Manual Profissional de Megahair - Landing Page
+# Nicole Megahair Landing Page
 
-Uma landing page moderna e responsiva para venda do Manual Profissional de Megahair com Fita Adesiva da Nicole Mathias.
+Landing page profissional para o manual de Megahair com Fita Adesiva de Nicole Mathias.
 
-## 📋 Características
+## Principais características
 
-- **Design Responsivo**: Adaptável a todos os dispositivos (desktop, tablet, mobile)
-- **Countdown Timer**: Contador regressivo de 24 horas com persistência em localStorage e cookies
-- **Banner Flutuante**: Banner de desconto 80% OFF com animação bounce
-- **Botão WhatsApp**: Botão flutuante para contato direto via WhatsApp
-- **Seções Otimizadas**: Estrutura de vendas com problema, solução, benefícios e garantia
-- **Performance**: Carregamento rápido e otimizado para conversão
+- **Paleta de cores:**  
+  - Dourado (`#FFD700` / `#D4AF37`)
+  - Preto (`#000000`)
+  - Rosa gold e rosa claro (`#E8B4B8`, `#F5D7DA`)
+  - Branco marfim (`#FFFDFD` / `#FCFCF9`)
+- **Design alternado:**  
+  As seções alternam fundo entre branco marfim e preto para maior contraste e elegância. Algumas seções usam rosa claro para quebrar o padrão visual.
+- **Botões de destaque:**  
+  Botões principais com gradiente rosa gold e dourado, sempre chamativos em qualquer fundo.
+- **Seção autora:**  
+  Bloco destacado e elegante para a história de Nicole Mathias, com tipografia especial e detalhes dourados.
+- **FAQ e depoimentos:**  
+  Seções visualmente diferenciadas e responsivas.
+- **Totalmente responsivo:**  
+  Adaptado para mobile, tablet e desktop.
+- **Acessibilidade:**  
+  Estados de foco e contraste de cor aprimorados.
 
-## 🚀 Tecnologias Utilizadas
+## Estrutura de arquivos
 
-- **HTML5**: Estrutura semântica e acessível
-- **CSS3**: Estilização moderna com flexbox e animações
-- **JavaScript**: Funcionalidades interativas e contador dinâmico
-- **Font Awesome**: Ícones vetoriais
+- `index.html` — Página principal.
+- `style.css` — Estilos principais, variáveis CSS e design responsivo.
+- `app.js` — Funcionalidades JS (FAQ, animações, etc).
 
-## 📁 Estrutura do Projeto
+## Personalização rápida
 
-```
-landing-megahair/
-├── index.html          # Página principal
-├── style.css           # Estilos CSS
-├── app.js             # Funcionalidades JavaScript
-├── README.md          # Documentação
-└── .gitignore         # Arquivos ignorados pelo Git
-```
+- **Cores:**  
+  Edite as variáveis em `:root` no `style.css` para alterar a paleta.
+- **Seções:**  
+  Alterne o fundo das seções adicionando ou removendo classes conforme sua preferência.
+- **Botões:**  
+  Os estilos de `.btn`, `.btn--primary`, `.cta-button` usam gradientes e sombras para sempre se destacarem.
 
-## 🎯 Funcionalidades Principais
+## Como usar
 
-### Countdown Timer
-- Contador regressivo de 24 horas
-- Persistência em localStorage e cookies (backup)
-- Reinicialização automática quando expira
-- Cookie com duração de 30 dias
+1. Clone ou baixe este repositório.
+2. Abra o `index.html` no seu navegador.
+3. Personalize o conteúdo e as imagens conforme sua marca.
 
-### Banner Flutuante
-- Posicionado no canto inferior direito
-- Animação bounce contínua
-- Design atrativo com desconto de 80%
-- Z-index alto para visibilidade
+## Créditos
 
-### Botão WhatsApp
-- Ícone Font Awesome integrado
-- Link direto para WhatsApp com mensagem pré-definida
-- Posicionamento fixo no canto inferior direito
-- Estilo moderno com sombra e transições
-
-## 🛠️ Como Usar
-
-1. **Visualização Local**:
-   - Abra o arquivo `index.html` diretamente no navegador
-   - Ou use um servidor local como Live Server (VS Code)
-
-2. **Servidor HTTP Simples**:
-   ```bash
-   # Python 3
-   python -m http.server 3000
-   
-   # Node.js (se tiver http-server instalado)
-   npx http-server -p 3000
-   ```
-
-3. **Acesse**: `http://localhost:3000`
-
-## ⚙️ Configurações
-
-### Modificar Número do WhatsApp
-No arquivo `app.js`, linha ~45:
-```javascript
-whatsappButton.href = 'https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre o Manual de Megahair.';
-```
-
-### Alterar Duração do Countdown
-No arquivo `app.js`, função `setNewCountdown()`:
-```javascript
-// Para 24 horas (atual)
-const endTime = new Date().getTime() + (24 * 60 * 60 * 1000);
-
-// Para outros períodos, modifique o multiplicador
-// 1 hora: (1 * 60 * 60 * 1000)
-// 12 horas: (12 * 60 * 60 * 1000)
-// 48 horas: (48 * 60 * 60 * 1000)
-```
-
-### Personalizar Cores
-No arquivo `style.css`, modifique as variáveis CSS:
-```css
-:root {
-    --primary-color: #ff6b6b;
-    --secondary-color: #4ecdc4;
-    --accent-color: #45b7d1;
-    /* ... outras variáveis */
-}
-```
-
-## 📱 Responsividade
-
-A landing page é totalmente responsiva com breakpoints:
-- **Desktop**: > 1024px
-- **Tablet**: 768px - 1024px
-- **Mobile**: < 768px
-
-## 🔧 Manutenção
-
-### Limpeza de Dados
-Para resetar o countdown para todos os usuários:
-1. Altere o nome da chave no localStorage (`megahairCountdown`)
-2. Altere o nome do cookie (`megahairCountdownCookie`)
-
-### Monitoramento
-O sistema salva automaticamente:
-- Tempo restante no localStorage
-- Backup em cookie com duração de 30 dias
-- Reinicialização automática quando expira
-
-## 📄 Licença
-
-Este projeto é propriedade de Nicole Mathias. Todos os direitos reservados.
-
-## 📞 Suporte
-
-Para dúvidas ou suporte, entre em contato via WhatsApp através do botão na página.
+Design e desenvolvimento por Luis Soto
 
 ---
 
-**Desenvolvido com ❤️ para Nicole Mathias**
+> **Atualizado:** Agosto 2025 — Inclui alternância de fundos, botões rosa gold, seção autora aprimorada e quebra de padrão visual.
