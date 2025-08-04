@@ -24,8 +24,6 @@ Este projeto é uma página de vendas para o **Manual Profissional de Megahair c
 3. Personalize o conteúdo conforme necessário para adaptá-lo ao seu projeto.
 
 ## Autor
-Desenvolvido por **Luis Soto**.
+Desenvolvido por **Luis Soto**. 04/08/2025 
 
 --- 
-
-✨ **Pronto para transformar sua carreira?** Acesse o manual e comece hoje mesmo! ✨

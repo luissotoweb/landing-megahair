@@ -1,0 +1,67 @@
+:root {
+  --color-bg-main: #FFFDFB;
+  --color-bg-alt: #FFF8E7; 
+  --color-bg-alt2: #FDF2F8;
+
+  --color-text: #222;
+  --color-text-secondary: #555;
+
+  --color-gold: #D4AF37;
+  --color-gold-light: #F4E499;
+  --color-pink: #EC4899;
+  --color-rose-gold: #E8B4B8;
+
+  --color-primary: var(--color-gold);
+  --color-primary-hover: #C4972F;
+  --color-primary-active: #A67C1A;
+  --color-btn-text: #fff;
+
+  --color-error: #E73C5E;
+  --color-warning: var(--color-gold);
+
+  --gradient-hero: linear-gradient(135deg, #FDF2F8 0%, #FFF8E7 100%);
+  --gradient-cta: linear-gradient(135deg, #EC4899 0%, #D4AF37 100%);
+}
+
+.hero {
+  background: var(--gradient-hero);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.hero__title { color: var(--color-text); }
+.hero__highlight { color: var(--color-pink); }
+.hero__subtitle { color: var(--color-text-secondary); }
+
+.btn--primary {
+  background: var(--gradient-cta);
+  color: var(--color-btn-text);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.btn--primary:hover { background: var(--color-primary-hover); }
+
+.audience__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.audience__item {
+  background-color: var(--color-bg-alt2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.audience__item:hover { transform: translateY(-5px); }
+
+section:nth-of-type(odd) { background: var(--color-bg-main); }
+section:nth-of-type(even) { background: var(--color-bg-alt); }
